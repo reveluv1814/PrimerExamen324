@@ -21,9 +21,9 @@ drop table TIENE;
 /*==============================================================*/
 create table ACCESO (
    ID_ACCESO            SERIAL               not null,
-   CI                   CHAR(25)             null,
+   /*CI                   CHAR(25)             null,*/
    USUARIO              CHAR(50)             null,
-   PASSWORD             VARCHAR(1)           null,
+   PASSWORD             VARCHAR           null,
    constraint PK_ACCESO primary key (ID_ACCESO)
 );
 
@@ -106,3 +106,60 @@ alter table TIENE
       references ROL (ID_ROL)
       on delete restrict on update restrict;
 
+/*Datos de la tabla rol*/
+INSERT INTO rol (nombre) values ('administrador');
+INSERT INTO rol (nombre) values ('estudiante');
+INSERT INTO rol (nombre) values ('director');
+INSERT INTO rol (nombre) values ('profesor');
+
+/*datos de la tabla acceso*/
+INSERT INTO acceso (usuario, password) values ('bulgaTEr', 'ARyStLe');/*admim*/
+INSERT INTO acceso (usuario, password) values ('oNDeRc', 'NtTHb');/*director*/
+INSERT INTO acceso (usuario, password) values ('cOniOW', 'rwKfE');/*profesor1*/
+INSERT INTO acceso (usuario, password) values ('nONeCT', 'u6EPm');/*profesor2*/
+INSERT INTO acceso (usuario, password) values ('TRICer', 'PnEFr');/*estudiante1*/
+INSERT INTO acceso (usuario, password) values ('rELfuL', 'yxgWz');/*estudiante2*/
+INSERT INTO acceso (usuario, password) values ('aNtiCe', 'XvuYe');/*estudiante3*/
+INSERT INTO acceso (usuario, password) values ('IspaRi', 'qqReW');/*estudiante4*/
+INSERT INTO acceso (usuario, password) values ('mINvOC', 'hP2ZV');/*estudiante5*/
+
+/*datos de la tabla persona*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (1, '6962120','RICARDO VEGA ZAMBRANO','1995-05-21','02');/*admim*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (2, '3037257','JUAN CAMILO JIMENEZ CORTES','1970-08-02','03');/*director*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (3, '9350108','CAROLINA PINTOR PINZON','1990-04-11','07');/*profesor1*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (4, '6991036','JORGE ESTEBAN REY BOTERO','1992-10-08','02');/*profesor2*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (5, '9756226','CLAUDIA LILIANA TORRES FRIAS ','2000-06-11','02');/*estudiante1*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (6, '9229511','FERNANDO PADILLA ROJAS','2001-02-01','04');/*estudiante2*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (7, '8793155','JESUS RAMOS UYULI','2000-07-25','03');/*estudiante3*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (8, 'E-0031409','PABLO ROBERTO RIVERO SOSA','2002-11-17','07');/*estudiante4*/
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (9, '9749519','MARCELA GARCIA RUEDA','2000-05-06','02');/*estudiante5*/
+
+/*datos inscripcion*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9756226','INF161',55,65,70,68);/*estudiante1*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9229511','INF281',75,65,80,70);/*estudiante2-1*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9229511','INF324',51,48,60,48);/*estudiante2-2*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('8793155','INF324',65,70,75,76);/*estudiante3*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('E-0031409','INF161',59,66,70,68);/*estudiante4-1*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('E-0031409','INF281',80,85,90,93);/*estudiante4-2*/
+INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9749519','INF161',70,65,60,67);/*estudiante5*/
+
+/*ver tiene e inscrita */
+/*datos relacion inscrita*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (5,1);/*relacion estudiante1 con su inscripcion*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (6,2);/*relacion estudiante2 con su inscripcion-1*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (6,3);/*relacion estudiante2 con su inscripcion-2*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (7,4);/*relacion estudiante3 con su inscripcion*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (8,5);/*relacion estudiante4 con su inscripcion-1*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (8,6);/*relacion estudiante4 con su inscripcion-2*/
+INSERT INTO inscrita (id_persona, id_inscripcion) values (9,7);/*relacion estudiante5 con su inscripcion*/
+
+/*datos realacion tiene*/
+INSERT INTO tiene (id_persona, id_rol) values (1,1);/*admin relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (2,3);/*director relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (3,4);/*profesor1 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (4,4);/*profesor2 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (5,2);/*estudiante1 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (6,2);/*estudiante2 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (7,2);/*estudiante3 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (8,2);/*estudiante4 relacion persona*/
+INSERT INTO tiene (id_persona, id_rol) values (9,2);/*estudiante5 relacion persona*/
