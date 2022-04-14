@@ -32,7 +32,7 @@ create table ACCESO (
 /*==============================================================*/
 create table INSCRIPCION (
    ID_INSCRIPCION       SERIAL               not null,
-   CI_ESTUDIANTE        CHAR(25)             null,
+   /*CI_ESTUDIANTE        CHAR(25)             null,*/
    SIGLA                CHAR(10)             null,
    NOTA1                FLOAT8               null,
    NOTA2                FLOAT8               null,
@@ -135,13 +135,13 @@ INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (8
 INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (9, '9749519','MARCELA GARCIA RUEDA','2000-05-06','02');/*estudiante5*/
 
 /*datos inscripcion*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9756226','INF161',55,65,70,68);/*estudiante1*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9229511','INF281',75,65,80,70);/*estudiante2-1*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9229511','INF324',51,48,60,48);/*estudiante2-2*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('8793155','INF324',65,70,75,76);/*estudiante3*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('E-0031409','INF161',59,66,70,68);/*estudiante4-1*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('E-0031409','INF281',80,85,90,93);/*estudiante4-2*/
-INSERT INTO inscripcion (ci_estudiante, sigla, nota1, nota2, nota3, notafinal) values ('9749519','INF161',70,65,60,67);/*estudiante5*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',55,65,70,68);/*estudiante1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF281',75,65,80,70);/*estudiante2-1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF324',51,48,60,48);/*estudiante2-2*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF324',65,70,75,76);/*estudiante3*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',59,66,70,68);/*estudiante4-1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF281',80,85,90,93);/*estudiante4-2*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',70,65,60,67);/*estudiante5*/
 
 /*ver tiene e inscrita */
 /*datos relacion inscrita*/
