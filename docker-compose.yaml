@@ -2,12 +2,13 @@ version: "3.8"
 services:
   postgres:
     container_name: base_postgres
-    image: postgres:14.1-alpine
+    image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=neil
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=mibaseneil
+      - POSTGRES_HOST=localhost
     ports:
       - 5432:5432
     volumes:
