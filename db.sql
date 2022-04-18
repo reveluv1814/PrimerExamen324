@@ -163,3 +163,35 @@ INSERT INTO tiene (id_persona, id_rol) values (6,2);/*estudiante2 relacion perso
 INSERT INTO tiene (id_persona, id_rol) values (7,2);/*estudiante3 relacion persona*/
 INSERT INTO tiene (id_persona, id_rol) values (8,2);/*estudiante4 relacion persona*/
 INSERT INTO tiene (id_persona, id_rol) values (9,2);/*estudiante5 relacion persona*/
+
+
+/*consultas*/
+/*ve si es estudiante y muestra sus notas*/
+SELECT p.nombre_c,i.sigla,i.nota1,i.nota2,i.nota3,i.notafinal
+FROM acceso a INNER JOIN persona p ON a.id_acceso = p.id_acceso
+INNER JOIN tiene t ON p.id_persona = t.id_persona
+INNER JOIN rol r ON t.id_rol = r.id_rol
+INNER JOIN inscrita ins ON p.id_persona = ins.id_persona
+INNER JOIN inscripcion i ON ins.id_inscripcion = i.id_inscripcion 
+WHERE r.nombre = 'estudiante' and a.usuario = 'rELfuL' and a.password = 'yxgWz';
+
+/*ve si es estudiante*/
+SELECT p.nombre_c
+FROM acceso a INNER JOIN persona p ON a.id_acceso = p.id_acceso
+INNER JOIN tiene t ON p.id_persona = t.id_persona
+INNER JOIN rol r ON t.id_rol = r.id_rol
+WHERE r.nombre = 'estudiante' and a.usuario = 'rELfuL' and a.password = 'yxgWz';
+
+/**/
+SELECT * FROM inscripcion ;
+/*suma y divide */
+SELECT p.departamento,ins.id_inscripcion,((nota1+nota2+nota3+notafinal)/4) "total"
+FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
+INNER JOIN persona p ON ins.id_persona = p.id_persona;
+
+ /*muestra la media de notas por departamento*/
+SELECT p.departamento,AVG((nota1+nota2+nota3+notafinal)/4)
+FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
+INNER JOIN persona p ON ins.id_persona = p.id_persona
+GROUP BY p.departamento
+ORDER BY p.departamento;
