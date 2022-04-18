@@ -65,16 +65,29 @@ else{
     <h2 class="titulon">Notas por Departamento:</h2>  
     <table class="table">
         <thead>
-            <th><b>Departamento</b></th>
-            <th><b>Media de Notas</b></th>      
+            <th><b>Depto. CH</b></th>
+            <th><b>Depto. LP</b></th>
+            <th><b>Depto. CB</b></th>
+            <th><b>Depto. RU</b></th>
+            <th><b>Depto. PT</b></th>
+            <th><b>Depto. TJ</b></th>
+            <th><b>Depto. SC</b></th>
+            <th><b>Depto. BE</b></th>
+            <th><b>Depto. PD</b></th>      
         </thead>
             <tbody>
             <?php
-                $sql_media = pg_query($conexion,"SELECT p.departamento,AVG((nota1+nota2+nota3+notafinal)/4)
-                        FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
-                        INNER JOIN persona p ON ins.id_persona = p.id_persona
-                        GROUP BY p.departamento
-                        ORDER BY p.departamento"
+                $sql_media = pg_query($conexion,"SELECT AVG(case when departamento='01' then notafinal ELSE 0 end) CH,
+                                                        AVG(case when departamento='02' then notafinal ELSE 0 end) LP,
+                                                        AVG(case when departamento='03' then notafinal ELSE 0 end) CB,
+                                                        AVG(case when departamento='04' then notafinal ELSE 0 end) RU,
+                                                        AVG(case when departamento='05' then notafinal ELSE 0 end) PT,
+                                                        AVG(case when departamento='06' then notafinal ELSE 0 end) TJ,
+                                                        AVG(case when departamento='07' then notafinal ELSE 0 end) SC,
+                                                        AVG(case when departamento='08' then notafinal ELSE 0 end) BE,
+                                                        AVG(case when departamento='09' then notafinal ELSE 0 end) PD
+                                                FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
+                                                INNER JOIN persona p ON ins.id_persona = p.id_persona;"
                     );
 
                 while($value = pg_fetch_array($sql_media)){
@@ -82,6 +95,14 @@ else{
                     <tr>
                         <td><?php echo $value[0]; ?></td>
                         <td><?php echo $value[1]; ?></td>
+                        <td><?php echo $value[2]; ?></td>
+                        <td><?php echo $value[3]; ?></td>
+                        <td><?php echo $value[4]; ?></td>
+                        <td><?php echo $value[5]; ?></td>
+                        <td><?php echo $value[6]; ?></td>
+                        <td><?php echo $value[7]; ?></td>
+                        <td><?php echo $value[8]; ?></td>
+                        <td><?php echo $value[9]; ?></td>
                     </tr>    
                     <?php
                 }

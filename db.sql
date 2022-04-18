@@ -135,13 +135,16 @@ INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (8
 INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (9, '9749519','MARCELA GARCIA RUEDA','2000-05-06','02');/*estudiante5*/
 
 /*datos inscripcion*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',55,65,70,68);/*estudiante1*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF281',75,65,80,70);/*estudiante2-1*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF324',51,48,60,48);/*estudiante2-2*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF324',65,70,75,76);/*estudiante3*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',59,66,70,68);/*estudiante4-1*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF281',80,85,90,93);/*estudiante4-2*/
-INSERT INTO inscripcion (sigla, nota1, nota2, nota3, notafinal) values ('INF161',70,65,60,67);/*estudiante5*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF161',55,65,70);/*estudiante1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF281',75,65,80);/*estudiante2-1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF324',51,48,60);/*estudiante2-2*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF324',65,70,75);/*estudiante3*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF161',59,66,70);/*estudiante4-1*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF281',80,85,90);/*estudiante4-2*/
+INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF161',70,65,60);/*estudiante5*/
+
+/* llenamos el campo notafinal con un update*/
+UPDATE inscripcion SET notafinal = (inscripcion.nota1 +inscripcion.nota2 + inscripcion.nota3)/3;
 
 /*ver tiene e inscrita */
 /*datos relacion inscrita*/
@@ -190,8 +193,14 @@ FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripc
 INNER JOIN persona p ON ins.id_persona = p.id_persona;
 
  /*muestra la media de notas por departamento*/
-SELECT p.departamento,AVG((nota1+nota2+nota3+notafinal)/4)
+SELECT AVG(case when departamento='01' then notafinal ELSE 0 end) CH,
+         AVG(case when departamento='02' then notafinal ELSE 0 end) LP,
+         AVG(case when departamento='03' then notafinal ELSE 0 end) CB,
+         AVG(case when departamento='04' then notafinal ELSE 0 end) RU,
+         AVG(case when departamento='05' then notafinal ELSE 0 end) PT,
+         AVG(case when departamento='06' then notafinal ELSE 0 end) TJ,
+         AVG(case when departamento='07' then notafinal ELSE 0 end) SC,
+         AVG(case when departamento='08' then notafinal ELSE 0 end) BE,
+         AVG(case when departamento='09' then notafinal ELSE 0 end) PD
 FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
-INNER JOIN persona p ON ins.id_persona = p.id_persona
-GROUP BY p.departamento
-ORDER BY p.departamento;
+INNER JOIN persona p ON ins.id_persona = p.id_persona;
