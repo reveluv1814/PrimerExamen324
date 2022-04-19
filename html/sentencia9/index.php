@@ -23,9 +23,4 @@ if ($_SERVER['REQUEST_METHOD']=='GET')
 		echo json_encode($sql->fetchAll());
 	}
 }
-    /*$pdo = new conexion();
-    $sql =  $pdo->prepare("select * from acceso");
-    $sql->execute();
-    echo json_encode($sql->fetchAll());*/
-
 ?>

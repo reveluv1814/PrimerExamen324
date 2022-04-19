@@ -102,7 +102,6 @@ else{
                         <td><?php echo $value[6]; ?></td>
                         <td><?php echo $value[7]; ?></td>
                         <td><?php echo $value[8]; ?></td>
-                        <td><?php echo $value[9]; ?></td>
                     </tr>    
                     <?php
                 }
