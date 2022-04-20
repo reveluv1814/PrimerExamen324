@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+    include 'sentencia2/app/Views/fcpn/header.php';
 ?>
     <div class= "carrera">
         <h1>Carrera de Matemática</h1>

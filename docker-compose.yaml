@@ -23,6 +23,27 @@ services:
       - 8080:80
     volumes:
       - ./html:/var/www/html
+  codeigniter:
+    image: php:7.3-apache
+    container_name: php-codeigniter
+    restart: always
+    ports:
+      - 3000:80
+    volumes:
+      - ./html2:/var/www/html
+  python:
+    build:
+      context: ./
+      dockerfile: Dockerfile-py
+    container_name: python-server
+    restart: always
+    ports:
+      - 5000:5000
+    volumes: 
+      - ./webpython:/webpython
+    command: python manage.py runserver 0.0.0.0:5000
 volumes:
   html: {}
   db: {}
+  html2: {}
+  web: {}
