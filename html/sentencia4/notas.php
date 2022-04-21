@@ -91,7 +91,7 @@ else{
                         <td><?php echo $value[2]; ?></td>
                         <td><?php echo $value[3]; ?></td>
                         <td><?php echo $value[4]; ?></td>
-                        <td><?php echo $value[4]; ?></td>
+                        <td><?php echo $value[5]; ?></td>
                     </tr>    
                     <?php
                 }

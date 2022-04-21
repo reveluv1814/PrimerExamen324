@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <td><?php echo $key['id_acceso']; ?></td>
                         <td><?php echo $key['ci']; ?></td>
                         <td><?php echo $key['nombre_c']; ?></td>
-                        <td><?php echo $key['facha_nac']; ?></td>
+                        <td><?php echo $key['fecha_nac']; ?></td>
                         <td><?php echo $key['departamento']; ?></td>
                     </tr>    
                     <?php

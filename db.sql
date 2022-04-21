@@ -58,7 +58,7 @@ create table PERSONA (
    ID_ACCESO            INT4                 not null,
    CI                   CHAR(25)             null,
    NOMBRE_C             CHAR(250)            null,
-   FACHA_NAC            DATE                 null,
+   FECHA_NAC            DATE                 null,
    DEPARTAMENTO         CHAR(2)              null,
    constraint PK_PERSONA primary key (ID_PERSONA)
 );
@@ -84,7 +84,7 @@ create table TIENE (
 alter table INSCRITA
    add constraint FK_INSCRITA_INSCRITA_PERSONA foreign key (ID_PERSONA)
       references PERSONA (ID_PERSONA)
-      on delete restrict on update restrict;
+      ON DELETE CASCADE;
 
 alter table INSCRITA
    add constraint FK_INSCRITA_INSCRITA2_INSCRIPC foreign key (ID_INSCRIPCION)
@@ -94,17 +94,17 @@ alter table INSCRITA
 alter table PERSONA
    add constraint FK_PERSONA_ACCEDE_ACCESO foreign key (ID_ACCESO)
       references ACCESO (ID_ACCESO)
-      on delete restrict on update restrict;
+      ON DELETE CASCADE;
 
 alter table TIENE
    add constraint FK_TIENE_TIENE_PERSONA foreign key (ID_PERSONA)
       references PERSONA (ID_PERSONA)
-      on delete restrict on update restrict;
+      ON DELETE CASCADE;
 
 alter table TIENE
    add constraint FK_TIENE_TIENE2_ROL foreign key (ID_ROL)
       references ROL (ID_ROL)
-      on delete restrict on update restrict;
+      ON DELETE CASCADE;
 
 /*Datos de la tabla rol*/
 INSERT INTO rol (nombre) values ('administrador');
@@ -124,15 +124,15 @@ INSERT INTO acceso (usuario, password) values ('IspaRi', 'qqReW');/*estudiante4*
 INSERT INTO acceso (usuario, password) values ('mINvOC', 'hP2ZV');/*estudiante5*/
 
 /*datos de la tabla persona*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (1, '6962120','RICARDO VEGA ZAMBRANO','1995-05-21','02');/*admim*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (2, '3037257','JUAN CAMILO JIMENEZ CORTES','1970-08-02','03');/*director*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (3, '9350108','CAROLINA PINTOR PINZON','1990-04-11','07');/*profesor1*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (4, '6991036','JORGE ESTEBAN REY BOTERO','1992-10-08','02');/*profesor2*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (5, '9756226','CLAUDIA LILIANA TORRES FRIAS ','2000-06-11','02');/*estudiante1*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (6, '9229511','FERNANDO PADILLA ROJAS','2001-02-01','04');/*estudiante2*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (7, '8793155','JESUS RAMOS UYULI','2000-07-25','03');/*estudiante3*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (8, 'E-0031409','PABLO ROBERTO RIVERO SOSA','2002-11-17','07');/*estudiante4*/
-INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values (9, '9749519','MARCELA GARCIA RUEDA','2000-05-06','02');/*estudiante5*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (1, '6962120','RICARDO VEGA ZAMBRANO','1995-05-21','02');/*admim*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (2, '3037257','JUAN CAMILO JIMENEZ CORTES','1970-08-02','03');/*director*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (3, '9350108','CAROLINA PINTOR PINZON','1990-04-11','07');/*profesor1*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (4, '6991036','JORGE ESTEBAN REY BOTERO','1992-10-08','02');/*profesor2*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (5, '9756226','CLAUDIA LILIANA TORRES FRIAS ','2000-06-11','02');/*estudiante1*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (6, '9229511','FERNANDO PADILLA ROJAS','2001-02-01','04');/*estudiante2*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (7, '8793155','JESUS RAMOS UYULI','2000-07-25','03');/*estudiante3*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (8, 'E-0031409','PABLO ROBERTO RIVERO SOSA','2002-11-17','07');/*estudiante4*/
+INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values (9, '9749519','MARCELA GARCIA RUEDA','2000-05-06','02');/*estudiante5*/
 
 /*datos inscripcion*/
 INSERT INTO inscripcion (sigla, nota1, nota2, nota3) values ('INF161',55,65,70);/*estudiante1*/
@@ -204,3 +204,9 @@ SELECT AVG(case when departamento='01' then notafinal ELSE 0 end) CH,
          AVG(case when departamento='09' then notafinal ELSE 0 end) PD
 FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
 INNER JOIN persona p ON ins.id_persona = p.id_persona;
+
+
+
+INSERT INTO acceso (usuario, password) values ('hola', 'hola');
+INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values ((SELECT id_acceso from acceso WHERE usuario='hola' and password='hola' LIMIT 1),'8888','$neil','2000-05-05','03');
+INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona WHERE ci='8888' LIMIT 1),2);/*admin relacion persona*/

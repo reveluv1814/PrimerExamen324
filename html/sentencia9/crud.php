@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             exit();
         } else {
             //Mostrar lista de perssonas
-            $sql = $dbConn->prepare("SELECT * FROM persona");
+            $sql = $dbConn->prepare("SELECT * FROM persona order by id_persona");
             $sql->execute();
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");
@@ -52,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <td><?php echo $key['id_acceso']; ?></td>
                                 <td><?php echo $key['ci']; ?></td>
                                 <td><?php echo $key['nombre_c']; ?></td>
-                                <td><?php echo $key['facha_nac']; ?></td>
+                                <td><?php echo $key['fecha_nac']; ?></td>
                                 <td><?php echo $key['departamento']; ?></td>
-                                <td><a href="FEditProducto.php?id=<?php echo $value[0]; ?>">Editar</a></td>
-                                <td><a href="FEliProducto.php?id=<?php echo $value[0]; ?>">Eliminar</a></td>
+                                <td><a href="FEditPersona.php?id=<?php echo $key['id_persona']; ?>">Editar</a></td>
+                                <td><a href="EliPersona.php?id=<?php echo $key['id_persona']; ?>">Eliminar</a></td>
                             </tr>
                         <?php
                         }
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         ?>
                     </tbody>
                 </table>
-                <a class="add"href="">Añadir nueva Persona</a>
+                <a class="add"href="FCreatePersona.php">Añadir nueva Persona</a>
             </div>
 <?php
             include 'footer.php';
