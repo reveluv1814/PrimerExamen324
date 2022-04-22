@@ -26,7 +26,7 @@ services:
   codeigniter:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: DockerfileCodeigniter
     image: php:7.3-apache
     container_name: php-codeigniter
     restart: always
