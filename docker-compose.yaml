@@ -24,6 +24,9 @@ services:
     volumes:
       - ./html:/var/www/html
   codeigniter:
+    build:
+      context: ./
+      dockerfile: Dockerfile
     image: php:7.3-apache
     container_name: php-codeigniter
     restart: always
