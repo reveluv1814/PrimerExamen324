@@ -32,13 +32,13 @@
         <div class="login-form">
             <div id="logo"><img src="{% static 'imagenes/logo2.png' %}" alt="" width="120px" height="120px" style="margin-left: 30%;margin-bottom:20px;"></div>
             <!--form con el metodo POST hacia acceso.php-->
-            <form method="post">{% csrf_token %}
+            <form action="" method="post">{% csrf_token%}
                 <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Username" id="UserName" name="login">
+                    <input type="text" class="form-control" placeholder="Username" id="user" name="user">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="form-group log-status">
-                    <input type="password" class="form-control" placeholder="Password" id="Passwod" name="pass">
+                    <input type="password" class="form-control" placeholder="Password" id="pass" name="pass">
                     <i class="fas fa-lock"></i>
                 </div>
                 <span class="alert">Credenciales no Válidas</span>

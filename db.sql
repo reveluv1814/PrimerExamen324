@@ -210,3 +210,4 @@ INNER JOIN persona p ON ins.id_persona = p.id_persona;
 INSERT INTO acceso (usuario, password) values ('hola', 'hola');
 INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values ((SELECT id_acceso from acceso WHERE usuario='hola' and password='hola' LIMIT 1),'8888','$neil','2000-05-05','03');
 INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona WHERE ci='8888' LIMIT 1),2);/*admin relacion persona*/
+INSERT INTO acceso (usuario, password) values ('admin', 'admin');/*director*/

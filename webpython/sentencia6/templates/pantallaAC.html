@@ -25,21 +25,22 @@
         <nav class="nav">  
             <div class="container-nav">
                     <div class="col1">
-						<div id="logo"><a href="index.php"><img src="{% static 'imagenes/logo1.png' %}" alt=""></a></div>
+						<div id="logo"><a href="{% url 'pantalla' %}"><img src="{% static 'imagenes/logo1.png' %}" alt=""></a></div>
 					</div>
                     <div class="col2">
                         <ul>
-					        <li><a href="index.php">Inicio</a></li>
-					        <li><a href="info.php">Informática</a></li>
-					        <li><a href="estadistica.php">Estadística</a></li>
-					        <li><a href="mate.php">Matemática</a></li>
-					        <li class="btn-cta"><a href="#"><span>Acceder</span></a></li>
-					        <li class="btn-cta"><a href="#"><span>SignIn</span></a></li>
+					        <li><a href="{% url 'pantalla' %}">Inicio</a></li>
+					        <li><a href="{% url 'info' %}">Informática</a></li>
+					        <li><a href="{% url 'esta' %}">Estadística</a></li>
+					        <li><a href="{% url 'mate' %}">Matemática</a></li>
+					        <li class="btn-cta"><a href="{% url 'salir' %}"><span>Acceder</span></a></li>
+					        <li class="btn-cta"><a href="{% url 'salir' %}"><span>Salir</span></a></li>
 				        </ul>
                     </div>
             </div>  
-        </nav> 
-        
+        </nav>       
+        <h2 style= 'widt:10%;background-color:#F7AA00; margin-left:3%;margin-right:80%;padding:5px;padding-left:35px;border-radius:10px 10px 0 0; font-size:30px;color:black; font-weight: 300;'>Bienvenido {{ request.session.user }}</h2>
+        <a href="{% url 'media' %}" style='font-size:20px;margin-bottom:30px;margin-left:25%;matgin-rigth:auto;text-align:center;border-radius:10px;text-decoration:none;padding:10px;color:#fff;background-color: #1D5C63;box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);'><span>Visualizar por departamento la media de notas</span></a><br>
         <section id="container-slider"> 
             <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
             <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
@@ -58,7 +59,7 @@
                     </div>
                 </div>
               </li>
-              <li style="background-image: url({% static 'imagenes/slide1.png' %}); ">
+              <li style="background-image: url('{% static 'imagenes/slide1.png' %}'); ">
                 <div class="content_slider" >
                     <div>
                         <p>FACULTAD DE CIENCIAS PURAS Y NATURALES</p>
@@ -66,7 +67,7 @@
                     </div>
                 </div>
               </li>
-              <li style="background-image: url({% static 'imagenes/slide3.png' %}); ">
+              <li style="background-image: url('{% static 'imagenes/slide3.png' %}'); ">
                 <div class="content_slider" >
                     <div>
                         <p>Lograr que nuestra Facultad</p>
@@ -74,7 +75,7 @@
                     </div>
                 </div>
               </li>
-              <li style="background-image: url({% static 'imagenes/slide5.png' %}); ">
+              <li style="background-image: url('{% static 'imagenes/slide5.png' %}'); ">
                 <div class="content_slider" >
                     <div>
                         <p>Aportanto a la Investigación</p>
@@ -83,8 +84,7 @@
                 </div>
               </li>
             </ul>
-        </section>
-
+        </section>       
 
         <section id="info">
             <div class="container">
@@ -127,8 +127,7 @@
             </div>
         </section>
         
-
-        <!--FOOTER-->
+<!--FOOTER-->
 <section id="contacto">
     <div id="contacto-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d956.3569777339331!2d-68.13029897078201!3d-16.504480913440315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f21ef47ebd1fb%3A0xf4df4ed38c2dc9d!2sFacultad%20de%20Ciencias%20Puras%20y%20Naturales%20-%20UMSA!5e0!3m2!1ses!2sbo!4v1650139949346!5m2!1ses!2sbo" width="600" height="480" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
