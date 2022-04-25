@@ -10,13 +10,18 @@ $departamento = trim($_POST["departamento"]);
 $user =  trim($_POST["user"]);
 $pass =  trim($_POST["pass"]);
 $rol =  trim($_POST["rol"]);
+if($ci!=null && $nombrec!=null && $user!=null && $pass!=null){
+    pg_query($conexion,"INSERT INTO acceso (usuario, password) values ('$user', '$pass')");
+    pg_query($conexion,"INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values ((SELECT id_acceso from acceso WHERE usuario='$user' and password='$pass' LIMIT 1),'$ci','$nombrec','$fecha','$departamento')");
+    pg_query($conexion,"INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona WHERE ci='$ci' LIMIT 1),'$rol')");
+    header("Location: crud.php");
+}
+else{
+    header("Location: crud.php");
+    echo "datos erroneos";
+}
 
-pg_query($conexion,"INSERT INTO acceso (usuario, password) values ('$user', '$pass')");
-pg_query($conexion,"INSERT INTO persona (id_acceso, ci, nombre_c, fecha_nac, departamento) values ((SELECT id_acceso from acceso WHERE usuario='$user' and password='$pass' LIMIT 1),'$ci','$nombrec','$fecha','$departamento')");
-pg_query($conexion,"INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona WHERE ci='$ci' LIMIT 1),'$rol')");
 
 
-
-header("Location: crud.php");
 exit();
 ?>

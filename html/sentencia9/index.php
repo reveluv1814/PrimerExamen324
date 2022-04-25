@@ -1,5 +1,6 @@
 <?php
-include 'config/database.php';
+header("Location: crud.php");
+ /* include 'config/database.php';
 include 'config/utils.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -7,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	/*
   listar todos las personas o solo uno
- */
+ 
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if (isset($_GET['id'])) {
 			//Mostrar una persona
@@ -127,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
- /*   include 'conexion.php';
+  include 'conexion.php';
    
 if ($_SERVER['REQUEST_METHOD']=='GET')
 {

@@ -22,7 +22,9 @@
 
         if($cantidad>0){
             /*si lo es muestra el boton para que vea si es el director*/
-            echo "<a href='media.php' style='font-size:20px;margin-bottom:30px;margin-left:25%;matgin-rigth:auto;text-align:center;border-radius:10px;text-decoration:none;padding:10px;color:#fff;background-color: #1D5C63;box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);'><span>Visualizar por departamento la media de notas</span></a><br>";
+            echo "<a href='media2.php' style='font-size:20px;margin-bottom:30px;margin-left:25%;margin-rigth:auto;text-align:center;border-radius:10px;text-decoration:none;padding:10px;color:#fff;background-color: #1D5C63;box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);'><span>Visualizar por departamento la media de notas (con vectores en PHP)</span></a><br>";
+            echo "<br><br><br>";
+            echo "<a href='media.php' style='font-size:20px;margin-bottom:30px;margin-left:25%;margin-rigth:auto;text-align:center;border-radius:10px;text-decoration:none;padding:10px;color:#fff;background-color: #1D5C63;box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);'><span>Visualizar por departamento la media de notas (AVG)</span></a><br>";
         }
     }
 ?>  

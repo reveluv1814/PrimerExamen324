@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <td><?php echo $key['fecha_nac']; ?></td>
                                 <td><?php echo $key['departamento']; ?></td>
                                 <td><a href="FEditPersona.php?id=<?php echo $key['id_persona']; ?>">Editar</a></td>
-                                <td><a href="EliPersona.php?id=<?php echo $key['id_persona']; ?>">Eliminar</a></td>
+                                <td><a href="EliPersona.php?id=<?php echo $key['id_persona']; ?>&idacceso=<?php echo $key['id_acceso']; ?>">Eliminar</a></td>
                             </tr>
                         <?php
                         }

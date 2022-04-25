@@ -85,15 +85,15 @@ else{
                 );
                 
                 $departamentos =[
-                    'chuquisaca' => array();
-                    'lapaz' => array();
-                    'cochabamba' => array();
-                    'oruro' => array();
-                    'potosi' => array();
-                    'tarija' => array();
-                    'santacruz' => array();
-                    'beni'=> array();
-                    'pando' => array();
+                    'chuquisaca'=> array(),
+                    'lapaz'=> array(),
+                    'cochabamba'=> array(),
+                    'oruro'=> array(),
+                    'potosi'=> array(),
+                    'tarija'=> array(),
+                    'santacruz'=> array(),
+                    'beni'=> array(),
+                    'pando' => array()
                 ];
                 
                 
@@ -127,20 +127,48 @@ else{
                             array_push($departamentos['pando'], $value["notafinal"]);
                         }    
                 }
-                $promch = array_sum($departamentos['chuquisaca'])/count($departamentos['chuquisaca']);
-                $promlp = array_sum($departamentos['lapaz'])/count($departamentos['lapaz']);
-                $promcb = array_sum($departamentos['cochabamba'])/count($departamentos['cochabamba']);
-                $promor = array_sum($departamentos['oruro'])/count($departamentos['oruro']);
-                $prompt = array_sum($departamentos['potosi'])/count($departamentos['potosi']);
-                $promtj = array_sum($departamentos['tarija'])/count($departamentos['tarija']);
-                $promsc = array_sum($departamentos['santacruz'])/count($departamentos['santacruz']);
-                $prombn = array_sum($departamentos['beni'])/count($departamentos['beni']);
-                $prompd = array_sum($departamentos['pando'])/count($departamentos['pando']);
+                if(count($departamentos['chuquisaca'])!=0){
+                    $promch = array_sum($departamentos['chuquisaca'])/count($departamentos['chuquisaca']);
+                }
+                else {$promch =0;}
+                if(count($departamentos['lapaz'])!=0){
+                    $promlp = array_sum($departamentos['lapaz'])/count($departamentos['lapaz']);
+                }
+                else {$promlp =0;}
+                if(count($departamentos['cochabamba'])!=0){
+                    $promcb = array_sum($departamentos['cochabamba'])/count($departamentos['cochabamba']);
+                }
+                else {$promcb =0;}
+                if(count($departamentos['oruro'])!=0){
+                    $promor = array_sum($departamentos['oruro'])/count($departamentos['oruro']);
+                }
+                else {$promor = 0;}
+                if(count($departamentos['potosi'])!=0){
+                    $prompt = array_sum($departamentos['potosi'])/count($departamentos['potosi']);
+                }
+                else{ $prompt = 0;}
+                if(count($departamentos['tarija'])!=0){
+                    $promtj = array_sum($departamentos['tarija'])/count($departamentos['tarija']);
+                }
+                else {$promtj = 0;}
+                if( count($departamentos['santacruz'])!=0){
+                    $promsc = array_sum($departamentos['santacruz'])/count($departamentos['santacruz']);
+                }
+                else  {$promsc = 0;}
+                if(count($departamentos['beni'])!=0){
+                    $prombn = array_sum($departamentos['beni'])/count($departamentos['beni']);
+                }
+                else {$prombn = 0;}
+                if(count($departamentos['pando'])!=0){
+                    $prompd = array_sum($departamentos['pando'])/count($departamentos['pando']);
+                }
+                else {$prompd = 0;}
+                
                 ?>
                     <tr>
                         <td><?php echo $promch; ?></td>
                         <td><?php echo $promlp; ?></td>
-                        <td><?php echo $$promcb; ?></td>
+                        <td><?php echo $promcb; ?></td>
                         <td><?php echo $promor; ?></td>
                         <td><?php echo $prompt; ?></td>
                         <td><?php echo $promtj; ?></td>
