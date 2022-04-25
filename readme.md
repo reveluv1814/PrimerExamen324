@@ -54,6 +54,7 @@ Localhost:5000/sentencia6
 ## VisualStudio .NET 
 
 Para este caso se uso el Framework además de nuestro Postgres que esta en nuestro contenedor. Mientras este activo nuestro servicio de Postgres podremos ejecutar el proyecto.
+Este se encuentra en la carpeta principal, dentro de la carpeta **Sentencia 8**
 ## Conclusiiones
 Despues de terminado hasta donde se pudo el examén, se logro completar la mayoria de la prueba experimentando con Docker y Django tecnologías que recientemente vi y me animé a solucionar el examén con estos entornos. Muchas gracias Licenciado si se tomó el tiempo de leer este apartado.
 
