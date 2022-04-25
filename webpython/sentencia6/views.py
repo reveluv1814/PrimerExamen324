@@ -42,15 +42,15 @@ def notas(request):
     context= {}
     lista =[]
     with connection.cursor() as cursor:
-        query ="""SELECT AVG(case when departamento='01' then notafinal ELSE 0 end) CH,
-                                                                AVG(case when departamento='02' then notafinal ELSE 0 end) LP,
-                                                                AVG(case when departamento='03' then notafinal ELSE 0 end) CB,
-                                                                AVG(case when departamento='04' then notafinal ELSE 0 end) RU,
-                                                                AVG(case when departamento='05' then notafinal ELSE 0 end) PT,
-                                                                AVG(case when departamento='06' then notafinal ELSE 0 end) TJ,
-                                                                AVG(case when departamento='07' then notafinal ELSE 0 end) SC,
-                                                                AVG(case when departamento='08' then notafinal ELSE 0 end) BE,
-                                                                AVG(case when departamento='09' then notafinal ELSE 0 end) PD
+        query ="""SELECT AVG(case when departamento='01' then notafinal end) CH,
+                                                                AVG(case when departamento='02' then notafinal end) LP,
+                                                                AVG(case when departamento='03' then notafinal end) CB,
+                                                                AVG(case when departamento='04' then notafinal end) RU,
+                                                                AVG(case when departamento='05' then notafinal end) PT,
+                                                                AVG(case when departamento='06' then notafinal end) TJ,
+                                                                AVG(case when departamento='07' then notafinal end) SC,
+                                                                AVG(case when departamento='08' then notafinal end) BE,
+                                                                AVG(case when departamento='09' then notafinal end) PD
                                                         FROM inscripcion i INNER JOIN inscrita ins ON i.id_inscripcion = ins.id_inscripcion 
                                                         INNER JOIN persona p ON ins.id_persona = p.id_persona"""
         cursor.execute(query)

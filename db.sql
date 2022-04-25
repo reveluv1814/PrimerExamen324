@@ -211,3 +211,45 @@ INSERT INTO acceso (usuario, password) values ('hola', 'hola');
 INSERT INTO persona (id_acceso, ci, nombre_c, facha_nac, departamento) values ((SELECT id_acceso from acceso WHERE usuario='hola' and password='hola' LIMIT 1),'8888','$neil','2000-05-05','03');
 INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona WHERE ci='8888' LIMIT 1),2);/*admin relacion persona*/
 INSERT INTO acceso (usuario, password) values ('admin', 'admin');/*director*/
+
+
+/*funcion crear pesona*/
+
+CREATE OR REPLACE FUNCTION inserta_persona(usuarioo varchar(50), passwordd varchar(50), cii varchar(25), nombre_cc varchar(250), fecha_nacc date, departamento varchar(2), rol integer)
+RETURNS integer AS
+$$
+DECLARE idtemp integer;
+DECLARE idtemper integer;
+BEGIN
+    INSERT INTO acceso(usuario,password) VALUES(usuarioo, passwordd) RETURNING id_acceso INTO idtemp;
+    INSERT INTO persona(id_acceso, ci, nombre_c, fecha_nac, departamento) VALUES(idtemp, cii, nombre_cc, fecha_nacc, departamento) RETURNING id_persona INTO idtemper;
+    INSERT INTO tiene (id_persona, id_rol) values (idtemper, rol);
+RETURN 1;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+select inserta_persona('red','1212','88888','neil g','2000-05-11','03',2);
+/*descargar thunder client y buscar la sentencia 9 localhost:8080/sentencia9/...*/
+
+/*ver lista de personas */
+/*en  get y ya */
+/*para una persona poner en query y el el id_persona*/
+
+
+/*CREAR UNA NUEVA PERSONA*/
+/*para agregar persona en body y y form y poner el nombre de las dependencias*/
+/* usuarioo
+/* passwordd
+/* cii
+/* nombre_cc
+/* fecha_nacc
+/* departamento
+/* rol integer
+
+/*ACTUALIZAR PERSONA*/
+/*ir a query y poner si o si id_persona con el id a editar y seguido de los campos a editar*/
+
+/*ELIMINAR PERSONA*/
+/* EN DELETE y en query poner id_persona */
