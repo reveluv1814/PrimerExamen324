@@ -7,7 +7,8 @@ Este examen Licenciado lo realice en Docker ya trabajarr en contenedores es much
 
 ##Base de Datos
 Para la base de datos se uso **Postgres**, primeramente se trabajo en el modelo Conceptual segun los campos vistos en el examen, para depues pasar al modelo físico, teniendo las entidades y atributos que se usaron para crear la BD.
-###Modelo Físico
+
+##Modelo Físico
 ![MIBASENEIl Modelo Físico](documentación/imagen_2022-04-24_221559239.png
 
 En el archivo `db.sql` se encuentra el script para la creación de la tablas e inserción de datos.
