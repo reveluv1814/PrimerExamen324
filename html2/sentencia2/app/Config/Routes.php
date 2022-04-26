@@ -23,6 +23,8 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
+
+
 /*
  * --------------------------------------------------------------------
  * Route Definitions
@@ -31,9 +33,17 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/fcpn', 'Home::fcpn');
+//$routes->get('/', 'Home::index');
+$routes->resource('persona');
 
+$routes->get('persona/new',             'Persona::new');
+$routes->post('persona',                'Persona::create');
+$routes->get('persona',                 'Persona::index');
+$routes->get('persona/(:segment)',      'Persona::show/$1');
+$routes->get('persona/(:segment)/edit', 'Persona::edit/$1');
+$routes->put('persona/(:segment)',      'Persona::update/$1');
+$routes->patch('persona/(:segment)',    'Persona::update/$1');
+$routes->delete('persona/(:segment)',   'Persona::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

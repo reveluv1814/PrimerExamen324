@@ -30,13 +30,15 @@ class Database extends Config
      *
      * @var array
      */
+    //Postgre://neil:admin@postgres:5432/mibaseneil?charset=utf8&connect_timeout=5&sslmode=1
     public $default = [
-        'DSN'      => '',
-        'hostname' => 'localhost',
+        
+        'DSN'      =>   'pgsql:host=postgres;port=5432;dbname=mibaseneil;user=neil;password=admin',
+        'hostname' => 'postgres',
         'username' => '',
         'password' => '',
-        'database' => '',
-        'DBDriver' => 'MySQLi',
+        'database' => 'mibaseneil',
+        'DBDriver' => 'Postgre',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
@@ -47,7 +49,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 3306,
+        'port'     => 5432,
     ];
 
     /**
