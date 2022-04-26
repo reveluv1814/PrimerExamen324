@@ -51,6 +51,17 @@ Con esto se creerá el Proyecto con una aplicación, en este caso la sentencia 6
 //Python
 Localhost:5000/sentencia6
 ```
+### Por si Tiene Errores con LAs Sesiones en Python
+```sh
+python manage.py migrate --fake sessions zero
+# then your sessions migrate will be
+python manage.py showmigrations
+sessions
+ [ ] 0001_initial
+# then migrate with --fake-initial again
+python manage.py migrate --fake-initial
+```
+
 ## VisualStudio .NET 
 
 Para este caso se uso el Framework además de nuestro Postgres que esta en nuestro contenedor. Mientras este activo nuestro servicio de Postgres podremos ejecutar el proyecto.

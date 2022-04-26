@@ -167,8 +167,79 @@ INSERT INTO tiene (id_persona, id_rol) values (7,2);/*estudiante3 relacion perso
 INSERT INTO tiene (id_persona, id_rol) values (8,2);/*estudiante4 relacion persona*/
 INSERT INTO tiene (id_persona, id_rol) values (9,2);/*estudiante5 relacion persona*/
 
+/*funcion crear persona*/
 
-/*consultas*/
+CREATE OR REPLACE FUNCTION inserta_persona(usuarioo varchar(50), passwordd varchar(50), cii varchar(25), nombre_cc varchar(250), fecha_nacc date, departamento varchar(2), rol integer)
+RETURNS integer AS
+$$
+DECLARE idtemp integer;
+DECLARE idtemper integer;
+BEGIN
+    INSERT INTO acceso(usuario,password) VALUES(usuarioo, passwordd) RETURNING id_acceso INTO idtemp;
+    INSERT INTO persona(id_acceso, ci, nombre_c, fecha_nac, departamento) VALUES(idtemp, cii, nombre_cc, fecha_nacc, departamento) RETURNING id_persona INTO idtemper;
+    INSERT INTO tiene (id_persona, id_rol) values (idtemper, rol);
+RETURN 1;
+END;
+$$ LANGUAGE plpgsql;
+
+/*ej de introduccion de datos*/
+select inserta_persona('red','1212','88888','neil g','2000-05-11','03',2);
+
+/************************Instrucciones Web service php*************************/
+/*descargar thunder client y buscar la sentencia 9 localhost:8080/sentencia9/...*/
+
+/*ver lista de personas */
+/*en  get y ya */
+/*para una persona poner en query y el el id_persona*/
+
+
+/*CREAR UNA NUEVA PERSONA*/
+/*para agregar persona en body y y form y poner el nombre de las dependencias*/
+/* usuarioo
+/* passwordd
+/* cii
+/* nombre_cc
+/* fecha_nacc
+/* departamento
+/* rol integer
+
+/*ACTUALIZAR PERSONA*/
+/*ir a query y poner si o si id_persona con el id a editar y seguido de los campos a editar*/
+
+/*ELIMINAR PERSONA*/
+/* EN DELETE y en query poner id_persona */
+
+/************************************Instrucciones Web service c#******************************/
+/*en localhost:(host de defecto en Visual)/api/persona
+/* listar -> get normal
+/* listar uno -> get con el id ej: api/persona/(idpersona)
+/* crear persona -> post y nos vamos body y a JSON y pegamos un json de persona y editamos los campos todo menos los id 
+/*                   {
+                        "Ci": "5",
+                        "NombreC": "neil",
+                        "FechaNac": "2000-10-05",
+                        "Departamento": "07",
+                        "Nick": "red",
+                        "Pass": "1212",
+                        "Rol": "2"
+                     }*/
+/*  editar persona -> put y en body json y pegamos el objeto persona con el id deseado y modificamos
+/*                ej queremos editar el id 10 entonces escribimos todo el objeto y modificamos solo los campos que queremos editar 
+                  {
+                     "IdPersona": 10,
+                        "IdAcceso": 10,
+                        "Ci": "55555                    ",
+                        "NombreC": "neil graneros flores",
+                        "FechaNac": "2000-05-11",
+                        "Departamento": "07",
+                        "Nick": null,
+                        "Pass": null,
+                        "Rol": 0
+                  }                     
+/* eliminar persona -> en DELETE y poner el id ej: api/persona/(idpersona)
+
+
+/****************************************consultas*/
 /*ve si es estudiante y muestra sus notas*/
 SELECT p.nombre_c,i.sigla,i.nota1,i.nota2,i.nota3,i.notafinal
 FROM acceso a INNER JOIN persona p ON a.id_acceso = p.id_acceso
@@ -213,7 +284,7 @@ INSERT INTO tiene (id_persona, id_rol) values ((SELECT id_persona from persona W
 INSERT INTO acceso (usuario, password) values ('admin', 'admin');/*director*/
 
 
-/*funcion crear pesona*/
+/*funcion crear persona*/
 
 CREATE OR REPLACE FUNCTION inserta_persona(usuarioo varchar(50), passwordd varchar(50), cii varchar(25), nombre_cc varchar(250), fecha_nacc date, departamento varchar(2), rol integer)
 RETURNS integer AS
